@@ -1,4 +1,4 @@
-# 🧩 Style Extractor PRO
+# Style Extractor PRO
 
 A powerful Chrome extension to **extract colors, fonts, and tech stack** from any website — instantly.
 
