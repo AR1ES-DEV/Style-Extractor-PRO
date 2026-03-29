@@ -77,7 +77,7 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/style-extractor-pro.git
+git clone https://github.com/AR1ES-DEV/style-extractor-pro.git
 cd style-extractor-pro
 ```
 
