@@ -4,7 +4,6 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 ![Preview](preview.png)
 
 
----
 
 ## Features
 
