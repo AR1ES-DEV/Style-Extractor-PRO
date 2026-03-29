@@ -6,9 +6,9 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎨 Color Extraction
+### Color Extraction
 - Extract up to **80 unique colors** from any page  
 - Smart **deduplication** (removes similar shades)  
 - Auto-grouped by color (Red, Blue, Gray, etc.)  
@@ -23,7 +23,7 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 
 ---
 
-### 🔤 Font Detection
+### Font Detection
 - Detect all fonts used on a page  
 - Shows:
   - Font family  
@@ -37,7 +37,7 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 
 ---
 
-### 🧠 Tech Stack Detection
+### Tech Stack Detection
 - Detect frameworks, libraries & platforms:
   - React, Next.js, Vue, Angular  
   - Shopify, WordPress, Webflow  
@@ -47,7 +47,7 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 
 ---
 
-### 🔍 Live Inspect Mode
+### Live Inspect Mode
 - Click any element on a page  
 - Instantly view:
   - Font styles  
@@ -59,7 +59,7 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 
 ---
 
-### 📦 Export Options
+### Export Options
 - `styles.json` → full data dump  
 - `variables.css` → ready-to-use CSS variables  
 - `tailwind.config.js` → plug into Tailwind  
@@ -67,7 +67,7 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 
 ---
 
-### ⚡ Smart Features
+### Smart Features
 - Per-domain **caching** (fast reloads)  
 - Manual cache clearing  
 - Rate-limited extraction (prevents spam)  
@@ -91,7 +91,7 @@ cd style-extractor-pro
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - Vanilla JavaScript (no frameworks)
 - Chrome Extensions API (Manifest v3)
@@ -100,7 +100,7 @@ cd style-extractor-pro
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 /src
@@ -113,7 +113,7 @@ cd style-extractor-pro
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
 ### Color Extraction
 - Scans all DOM elements  
@@ -137,7 +137,7 @@ cd style-extractor-pro
 
 ---
 
-## 📌 Roadmap
+## Roadmap
 
 - [ ] Figma export  
 - [ ] Gradient detection  
