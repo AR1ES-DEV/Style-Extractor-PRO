@@ -20,7 +20,6 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
   - Tailwind config  
   - PNG palette  
 
----
 
 ### Font Detection
 - Detect all fonts used on a page  
@@ -34,7 +33,6 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
   - CSS declaration  
 - Quick link to Google Fonts  
 
----
 
 ### Tech Stack Detection
 - Detect frameworks, libraries & platforms:
@@ -44,7 +42,6 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
   - Analytics tools, CDNs, and more  
 - Categorised view for clarity  
 
----
 
 ### Live Inspect Mode
 - Click any element on a page  
@@ -56,7 +53,6 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 - Click any value to **copy it**  
 - Press `ESC` to exit  
 
----
 
 ### Export Options
 - `styles.json` → full data dump  
@@ -64,7 +60,6 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 - `tailwind.config.js` → plug into Tailwind  
 - `palette.png` → clean visual palette  
 
----
 
 ### Smart Features
 - Per-domain **caching** (fast reloads)  
@@ -72,7 +67,6 @@ A powerful Chrome extension to **extract colors, fonts, and tech stack** from an
 - Rate-limited extraction (prevents spam)  
 - Clean, minimal UI with dark theme  
 
----
 
 ## 🚀 Installation
 
@@ -88,7 +82,6 @@ cd style-extractor-pro
 3. Click **Load unpacked**
 4. Select the project folder
 
----
 
 ## Tech Stack
 
@@ -97,7 +90,6 @@ cd style-extractor-pro
 - Canvas API (PNG export)
 - DOM + CSSOM parsing
 
----
 
 ## Project Structure
 
@@ -110,7 +102,6 @@ cd style-extractor-pro
   └── manifest.json
 ```
 
----
 
 ## How It Works
 
@@ -134,7 +125,6 @@ cd style-extractor-pro
   - Global variables  
 - Uses a rule-based detection system  
 
----
 
 ## Roadmap
 
@@ -144,7 +134,6 @@ cd style-extractor-pro
 - [ ] Design system auto-generation  
 - [ ] Save/export presets  
 
----
 
 ## 🤝 Contributing
 
@@ -157,13 +146,11 @@ If you want to improve:
 
 Open an issue first or submit a PR.
 
----
 
 ## 📄 License
 
 MIT License
 
----
 
 ## ❤️ Credits
 
