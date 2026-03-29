@@ -1,4 +1,4 @@
-// ================= ICONS =================
+//  ICONS 
 const icons = {
   check:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`,
   x:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>`,
@@ -15,11 +15,11 @@ let allFonts  = [];
 let allTech   = [];
 let currentDomain = null;
 
-// ================= RATE LIMIT =================
+//  RATE LIMIT 
 let lastExtractTime = 0;
 const EXTRACT_COOLDOWN = 2000;
 
-// ================= HELPERS =================
+//  HELPERS 
 function hexToHue(hex) {
   if (!hex || hex.length < 7) return -1;
   const r=parseInt(hex.slice(1,3),16)/255, g=parseInt(hex.slice(3,5),16)/255, b=parseInt(hex.slice(5,7),16)/255;
@@ -58,25 +58,25 @@ function getColorGroup(hex) {
 }
 function copyToClipboard(t){ navigator.clipboard.writeText(t); }
 
-// ================= STATUS =================
+//  STATUS 
 function setStatus(type, msg, icon=""){
   const el=document.getElementById("status");
   el.className=type||"";
   el.innerHTML=`${icon}<span>${msg}</span>`;
 }
 
-// ================= STORAGE =================
+//  STORAGE 
 const save = (k,v) => new Promise(r=>chrome.storage.local.set({[k]:v},r));
 const load = k     => new Promise(r=>chrome.storage.local.get(k,d=>r(d[k]||null)));
 const remove = k   => new Promise(r=>chrome.storage.local.remove(k,r));
 
-// ================= BADGE =================
+//  BADGE 
 function setBadge(text, color){
   chrome.action.setBadgeText({text: text||""});
   if (color) chrome.action.setBadgeBackgroundColor({color});
 }
 
-// ================= CLEAR CACHE =================
+//  CLEAR CACHE 
 async function handleClear(){
   if (!currentDomain) return;
   await remove(`styles_${currentDomain}`);
@@ -89,7 +89,7 @@ async function handleClear(){
   setStatus("success","Cache cleared",icons.check);
 }
 
-// ================= FOOTER =================
+//  FOOTER 
 function injectFooter(){
   if (document.getElementById("se-footer")) return;
   const footer = document.createElement("div");
@@ -108,7 +108,7 @@ function injectFooter(){
   document.querySelector(".container").appendChild(footer);
 }
 
-// ================= INIT =================
+//  INIT 
 document.addEventListener("DOMContentLoaded", async ()=>{
   document.getElementById("extract").onclick        = handleExtract;
   document.getElementById("export").onclick         = handleExport;
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
   } catch(_){}
 });
 
-// ================= EXTRACT =================
+//  EXTRACT 
 async function handleExtract(){
   const now=Date.now();
   if (now-lastExtractTime<EXTRACT_COOLDOWN){
@@ -207,7 +207,7 @@ async function handleExtract(){
   });
 }
 
-// ================= EXPORT =================
+//  EXPORT 
 function handleExport(){
   if (!lastData) return setStatus("error","Extract first",icons.x);
   dl(JSON.stringify(lastData,null,2),"application/json","styles.json");
@@ -237,7 +237,7 @@ function dl(content,mime,filename){
   a.download=filename; a.click();
 }
 
-// ================= PNG EXPORT =================
+//  PNG EXPORT 
 function handleExportPng(){
   if (!lastData?.colors?.length) return setStatus("error","Extract first",icons.x);
   const colors=lastData.colors;
@@ -283,7 +283,7 @@ function handleExportPng(){
   });
 }
 
-// ================= INSPECT =================
+//  INSPECT 
 async function handleInspect(){
   const [tab]=await chrome.tabs.query({active:true,currentWindow:true});
   if (!tab?.url||!tab.url.startsWith("http")) return setStatus("error","Can't inspect this page",icons.x);
@@ -395,7 +395,7 @@ function enableInspect(){
   function mk(tagName,id,css){ const el=document.createElement(tagName); el.id=id; el.style.cssText=css; return el; }
 }
 
-// ================= DETECT TECH =================
+//  DETECT TECH 
 async function handleDetectTech(){
   setStatus(null,"Detecting stack…",icons.spinner);
   const [tab]=await chrome.tabs.query({active:true,currentWindow:true});
@@ -511,7 +511,7 @@ function detectTech(){
   return found;
 }
 
-// ================= FILTER =================
+//  FILTER 
 function filterColors(q){
   q=q.toLowerCase();
   const f=q?allColors.filter(c=>c.hex.toLowerCase().includes(q)||c.hsl.toLowerCase().includes(q)||getColorGroup(c.hex).toLowerCase().includes(q)):allColors;
@@ -522,7 +522,7 @@ function filterFonts(q){
   renderFontList(q?allFonts.filter(f=>f.family.toLowerCase().includes(q)):allFonts);
 }
 
-// ================= COLOR UI =================
+//  COLOR UI 
 function renderColorGrid(colors){
   const div=document.getElementById("colors"); div.innerHTML="";
   if(!colors.length){div.innerHTML=`<p class="empty-state">No colors found</p>`;return;}
@@ -547,7 +547,7 @@ function renderColorGrid(colors){
 
 function displayResults(data){renderColorGrid(data.colors);renderFontList(data.fonts);}
 
-// ================= FONT UI =================
+//  FONT UI 
 function renderFontList(fonts){
   const div=document.getElementById("fonts"); div.innerHTML="";
   if(!fonts.length){div.innerHTML=`<p class="empty-state">No fonts found</p>`;return;}
@@ -591,7 +591,7 @@ function renderFontList(fonts){
   });
 }
 
-// ================= TECH UI =================
+//  TECH UI 
 const LOGO_MAP={
   "React":"react","Next.js":"nextdotjs","Vue.js":"vuedotjs","Angular":"angular",
   "Svelte":"svelte","Nuxt.js":"nuxtdotjs","Gatsby":"gatsby","Remix":"remix","Astro":"astro",
