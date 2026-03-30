@@ -120,7 +120,6 @@ document.addEventListener("DOMContentLoaded", async ()=>{
   document.getElementById("colorSearch").oninput    = e=>filterColors(e.target.value);
   document.getElementById("fontSearch").oninput     = e=>filterFonts(e.target.value);
 
-  // Clear cache button — injected dynamically next to status
   const clearBtn = document.createElement("button");
   clearBtn.id = "clearCache";
   clearBtn.title = "Clear cached data for this site";
@@ -287,9 +286,8 @@ function handleExportPng(){
 async function handleInspect(){
   const [tab]=await chrome.tabs.query({active:true,currentWindow:true});
   if (!tab?.url||!tab.url.startsWith("http")) return setStatus("error","Can't inspect this page",icons.x);
-  chrome.scripting.executeScript({target:{tabId:tab.id},func:enableInspect});
-  setStatus(null,"Click any element · Esc to exit",icons.cursor);
-  window.close();
+  // close popup AFTER injection so the script is guaranteed to be injected
+  chrome.scripting.executeScript({target:{tabId:tab.id},func:enableInspect},()=>window.close());
 }
 
 function enableInspect(){
@@ -368,13 +366,21 @@ function enableInspect(){
     tip.style.left=tx+"px"; tip.style.top=ty+"px";
   };
 
+  // walk up from click target to find data-copy
   const onClick=(e)=>{
-    const row=e.composedPath().find(n=>n.dataset&&n.dataset.copy!==undefined);
-    if(row){ e.preventDefault(); e.stopPropagation(); navigator.clipboard.writeText(row.dataset.copy).catch(()=>{}); showToast(`Copied ${row.dataset.copy}`); return; }
+    let el=e.target;
+    while(el&&el!==document.body){
+      if(el.dataset&&el.dataset.copy!==undefined){
+        e.preventDefault(); e.stopPropagation();
+        navigator.clipboard.writeText(el.dataset.copy).catch(()=>{});
+        showToast(`Copied ${el.dataset.copy}`);
+        return;
+      }
+      el=el.parentElement;
+    }
     e.preventDefault(); e.stopPropagation(); cleanup();
   };
 
-  // ---- Escape key exits inspect mode ----
   const onKeyDown=(e)=>{
     if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); cleanup(); }
   };
@@ -633,4 +639,3 @@ function displayTech(detections){
     sec.appendChild(grid); cont.appendChild(sec);
   });
 }
-
